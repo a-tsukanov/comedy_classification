@@ -4,17 +4,17 @@ from keras.layers import Dense
 import numpy as np
 
 
-def construct_neural_network(input_size):
+def construct_neural_network(input_size: int):
     nn = Sequential()
     nn.add(Dense(8, input_dim=input_size, activation='relu'))
-    nn.add(Dense(12, activation='relu'))
+    nn.add(Dense(14, activation='relu'))
     nn.add(Dense(1, activation='sigmoid'))
 
     nn.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return nn
 
 
-def normalize_duration(df):
+def normalize_duration(df: 'pd.DataFrame') -> 'pd.DataFrame':
     result = df.copy()
     max_value = df['Duration'].max()
     min_value = df['Duration'].min()
@@ -52,6 +52,14 @@ features_names = [
     ]
 
 
+def add_numerical_cols_from_categorical(df: 'pd.DataFrame', col_name: str) -> 'pd.DataFrame':
+    languages = pd.get_dummies(df[col_name])
+    result = pd.concat([df, languages], axis=1)
+    global features_names
+    features_names += list(languages)
+    return result
+
+
 def read_data_from_csv(train_size: int) -> tuple:
     train_data = pd.read_csv('train.csv', index_col='Id')
     train_data = normalize_duration(train_data)
@@ -59,10 +67,8 @@ def read_data_from_csv(train_size: int) -> tuple:
     #shuffle rows
     train_data = train_data.iloc[np.random.permutation(len(train_data))]
 
-    languages = pd.get_dummies(train_data['Language'])
-    train_data = pd.concat([train_data, languages], axis=1)
-    global features_names
-    features_names += list(languages)
+    for feature in ['Language', 'Country', 'Rating']:
+        train_data = add_numerical_cols_from_categorical(train_data, feature)
 
     print(train_data)
 
