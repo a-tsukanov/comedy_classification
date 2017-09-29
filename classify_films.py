@@ -4,9 +4,9 @@ from keras.layers import Dense
 import numpy as np
 
 
-def construct_neural_network():
+def construct_neural_network(input_size):
     nn = Sequential()
-    nn.add(Dense(8, input_dim=22, activation='relu'))
+    nn.add(Dense(8, input_dim=input_size, activation='relu'))
     nn.add(Dense(12, activation='relu'))
     nn.add(Dense(1, activation='sigmoid'))
 
@@ -14,10 +14,15 @@ def construct_neural_network():
     return nn
 
 
-def read_data_from_csv(train_size: int) -> tuple:
-    train_data = pd.read_csv('train.csv', index_col='Id')
+def normalize_duration(df):
+    result = df.copy()
+    max_value = df['Duration'].max()
+    min_value = df['Duration'].min()
+    result['Duration'] = (df['Duration'] - min_value) / (max_value - min_value)
+    return result
 
-    features_names = [
+
+features_names = [
         'Duration',
         # 'Language',
         # 'Country',
@@ -43,10 +48,26 @@ def read_data_from_csv(train_size: int) -> tuple:
         'Thriller',
         'War',
         'Western',
-        # 'Poster'
+        # 'Poster',
     ]
-    print(len(features_names))
+
+
+def read_data_from_csv(train_size: int) -> tuple:
+    train_data = pd.read_csv('train.csv', index_col='Id')
+    train_data = normalize_duration(train_data)
+
+    #shuffle rows
+    train_data = train_data.iloc[np.random.permutation(len(train_data))]
+
+    languages = pd.get_dummies(train_data['Language'])
+    train_data = pd.concat([train_data, languages], axis=1)
+    global features_names
+    features_names += list(languages)
+
+    print(train_data)
+
     train_features = train_data[features_names][:train_size].values
+    print(train_features)
     train_labels = train_data['Target'][:train_size].values
 
     test_features = train_data[features_names][train_size:].values
@@ -63,7 +84,7 @@ def start():
 
     train_features, train_labels, test_features, test_labels = read_data_from_csv(train_size=3500)
 
-    model = construct_neural_network()
+    model = construct_neural_network(len(features_names))
     model.fit(train_features, train_labels, epochs=100, batch_size=512)
 
     predicted_test_labels = model.predict_classes(test_features)
