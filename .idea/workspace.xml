@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a568460-186f-4d93-87b7-26211931a838" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.csv" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classify_films.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tsukanov_Alexander_task_2.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tsukanov_Alexander_task_2_Report.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tsukanov_Alexander_task_2_prediction.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sample_submission.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -353,14 +355,28 @@
       <option name="project" value="LOCAL" />
       <updated>1506872195073</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="writes results to file">
+      <created>1507578710728</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1507578710728</updated>
+    </task>
+    <task id="LOCAL-00005" summary="writes results to file">
+      <created>1507578785194</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1507578785194</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32359722" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32359722" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -385,7 +401,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="file renamed" />
     <MESSAGE value="description file added" />
-    <option name="LAST_COMMIT_MESSAGE" value="description file added" />
+    <MESSAGE value="writes results to file" />
+    <option name="LAST_COMMIT_MESSAGE" value="writes results to file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
